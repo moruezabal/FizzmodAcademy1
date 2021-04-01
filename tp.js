@@ -23,7 +23,7 @@ function contarVocales(texto) {
 Crear un repo en github y subir todo el proyecto. Se ignorará la carpeta node_modules (para ellos está creado el archivo .gitignore en este proyecto) Esta función devolverá un string con la url del repo.
 */
 function urlRepo() {
-  return 'https://github.com/moruezabal/FizzmodAcademy1'
+  return 'https://github.com/moruezabal/FizzmodAcademy1.git'
 }
 
 /* 
@@ -33,8 +33,7 @@ Crear un propiedad estática contadorInstancias que me indique cuantas instancia
 const crearClase = () => {
   class Clase{
     constructor(textoIngresado){
-
-      this.texto = textoIngresado;
+      typeof textoIngresado === 'string' ? this.texto = textoIngresado : this.texto = null;
       if (Clase.contadorInstancias){
         Clase.contadorInstancias++
       }
@@ -42,20 +41,37 @@ const crearClase = () => {
         Clase.contadorInstancias = 1;
       }
     }
-    
     contadorPalabras(){
-      let palabras = this.texto.trim().split(" ");
-      return palabras.length
-    }
-    hayNumeros(){
-      let numeros = "0123456789"
 
-      for(let i=0; i<numeros.length; i++){
-        if (this.texto.includes(numeros.charAt(i))){
-          return true;
+      if(typeof this.texto === 'string'){ 
+        if (this.texto.length === 0){
+          return 0
+        }
+        else{
+          let palabras = this.texto.trim().split(" ");
+          return palabras.length
         }
       }
-      return false;
+      else{
+        return -1
+      }
+      
+    }
+    hayNumeros(){
+
+      let numeros = "0123456789"
+
+      if(typeof this.texto === 'string'){
+        for(let i=0; i<numeros.length; i++){
+          if (this.texto.includes(numeros.charAt(i))){
+            return true;
+          }
+        }
+        return false;  
+      }
+      else{
+        return -1
+      }      
     }
   }  
   Clase.contadorInstancias = 0;
