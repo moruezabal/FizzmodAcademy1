@@ -9,7 +9,6 @@ function contarVocales(texto) {
    
     arrayCaracteres.forEach(caracter => {
       if (caracter === "a" || caracter === "e" || caracter === "i" || caracter === "o" || caracter === "u" ){
-        console.log(caracter);
         cantVocales++;
       }
     });
@@ -18,14 +17,13 @@ function contarVocales(texto) {
   else{
     return -1
   }
-  
 }
 
 /* 
 Crear un repo en github y subir todo el proyecto. Se ignorará la carpeta node_modules (para ellos está creado el archivo .gitignore en este proyecto) Esta función devolverá un string con la url del repo.
 */
 function urlRepo() {
-  return
+  return 'https://github.com/moruezabal/FizzmodAcademy1'
 }
 
 /* 
@@ -33,10 +31,37 @@ Crear una función arrow, que devuelva una clase en ES6 que contendrá dos méto
 Crear un propiedad estática contadorInstancias que me indique cuantas instancias hay de esa clase.
 */
 const crearClase = () => {
-  return
-}
+  class Clase{
+    constructor(textoIngresado){
 
-console.log(contarVocales("MSurciélagO"));
+      this.texto = textoIngresado;
+      if (Clase.contadorInstancias){
+        Clase.contadorInstancias++
+      }
+      else{
+        Clase.contadorInstancias = 1;
+      }
+    }
+    
+    contadorPalabras(){
+      let palabras = this.texto.trim().split(" ");
+      return palabras.length
+    }
+    hayNumeros(){
+      let numeros = "0123456789"
+
+      for(let i=0; i<numeros.length; i++){
+        if (this.texto.includes(numeros.charAt(i))){
+          return true;
+        }
+      }
+      return false;
+    }
+  }  
+  Clase.contadorInstancias = 0;
+
+  return Clase 
+}
 
 module.exports = {
   contarVocales,
